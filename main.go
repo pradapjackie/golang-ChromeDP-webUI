@@ -15,7 +15,7 @@ func main() {
     // Set Chrome options to run in headed mode (with UI)
     opts := chromedp.DefaultExecAllocatorOptions[:]
     opts = append(opts,
-        chromedp.Flag("headless", false),      // Disable headless mode
+        chromedp.Flag("headless", true),      // Disable headless mode
         chromedp.Flag("disable-gpu", false),   // Enable GPU (optional)
         chromedp.Flag("start-maximized", true),// Start with a maximized window
     )
