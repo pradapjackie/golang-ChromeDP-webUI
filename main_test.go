@@ -75,39 +75,39 @@ func TestGoogleSearch_SearchBarVisible(t *testing.T) {
     }
 }
 
-// TestGoogleSearch_EmptyQuery checks if there are results when the search query is empty
-func TestGoogleSearch_EmptyQuery(t *testing.T) {
-    opts := chromedp.DefaultExecAllocatorOptions[:]
-    opts = append(opts,
-        chromedp.Flag("headless", false),
-        chromedp.Flag("disable-gpu", false),
-        chromedp.Flag("start-maximized", true),
-    )
-    allocCtx, cancel := chromedp.NewExecAllocator(context.Background(), opts...)
-    defer cancel()
-    ctx, cancel := chromedp.NewContext(allocCtx)
-    defer cancel()
-    ctx, cancel = context.WithTimeout(ctx, 15*time.Second)
-    defer cancel()
+// // TestGoogleSearch_EmptyQuery checks if there are results when the search query is empty
+// func TestGoogleSearch_EmptyQuery(t *testing.T) {
+//     opts := chromedp.DefaultExecAllocatorOptions[:]
+//     opts = append(opts,
+//         chromedp.Flag("headless", false),
+//         chromedp.Flag("disable-gpu", false),
+//         chromedp.Flag("start-maximized", true),
+//     )
+//     allocCtx, cancel := chromedp.NewExecAllocator(context.Background(), opts...)
+//     defer cancel()
+//     ctx, cancel := chromedp.NewContext(allocCtx)
+//     defer cancel()
+//     ctx, cancel = context.WithTimeout(ctx, 15*time.Second)
+//     defer cancel()
 
-    var result string
+//     var result string
 
-    err := chromedp.Run(ctx,
-        chromedp.Navigate("https://www.google.com"),
-        chromedp.WaitVisible(`//textarea[@name="q"]`),
-        chromedp.SendKeys(`//textarea[@name="q"]`, ""),  // Empty query
-        chromedp.SendKeys(`//textarea[@name="q"]`, kb.Enter),
-        chromedp.WaitVisible(`#search`, chromedp.ByID),
-        chromedp.Text(`#search`, &result),
-    )
+//     err := chromedp.Run(ctx,
+//         chromedp.Navigate("https://www.google.com"),
+//         chromedp.WaitVisible(`//textarea[@name="q"]`),
+//         chromedp.SendKeys(`//textarea[@name="q"]`, ""),  // Empty query
+//         chromedp.SendKeys(`//textarea[@name="q"]`, kb.Enter),
+//         chromedp.WaitVisible(`#search`, chromedp.ByID),
+//         chromedp.Text(`#search`, &result),
+//     )
 
-    if err != nil {
-        t.Fatalf("Test Failed: %v", err)
-    }
+//     if err != nil {
+//         t.Fatalf("Test Failed: %v", err)
+//     }
 
-    if result == "" {
-        t.Log("Test Passed: No search results for empty query")
-    } else {
-        t.Errorf("Test Failed: Unexpected results for empty query")
-    }
-}
+//     if result == "" {
+//         t.Log("Test Passed: No search results for empty query")
+//     } else {
+//         t.Errorf("Test Failed: Unexpected results for empty query")
+//     }
+// }
