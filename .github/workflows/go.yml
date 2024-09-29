@@ -15,7 +15,7 @@ jobs:
 
     services:
       xvfb: # Xvfb is used to simulate a display for headed mode
-        image: cirrusci/xvfb
+        image: cirrusci/xvfb:latest
         options: --privileged
         ports:
           - 9222:9222
