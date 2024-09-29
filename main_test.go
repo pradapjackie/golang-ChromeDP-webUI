@@ -15,9 +15,9 @@ import (
 func TestGoogleSearch_Golang(t *testing.T) {
     opts := chromedp.DefaultExecAllocatorOptions[:]
     opts = append(opts,
-        chromedp.Flag("headless", false),
-        chromedp.Flag("disable-gpu", false),
-        chromedp.Flag("start-maximized", true),
+        chromedp.Flag("headless", true),     // Ensure headless mode is enabled
+        chromedp.Flag("disable-gpu", true),  // Disable GPU in headless mode
+        chromedp.Flag("no-sandbox", true),   // Disable sandbox for Chrome
     )
     allocCtx, cancel := chromedp.NewExecAllocator(context.Background(), opts...)
     defer cancel()
